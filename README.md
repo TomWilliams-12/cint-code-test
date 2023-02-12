@@ -49,18 +49,18 @@ Work Done:
 
 
 1. Questions:
-    - How do future applications get ALB DNS name to use the service?
-        I believe this can be achieved by using a module. You are able to access outputs from other modules using the syntax "module.object.output".
+### How do future applications get ALB DNS name to use the service?
+- I believe this can be achieved by using a module. You are able to access outputs from other modules using the syntax "module.object.output".
 
-        If the system is in a separate codebase then you are able to import the outputs from a state file using terraform_remote_state in a data block.
+If the system is in a separate codebase then you are able to import the outputs from a state file using terraform_remote_state in a data block.
 
-    - How does this Terraform work in a pipeline?
-        It is not best practice to use tfvars in a pipeline and should be explicitily declared as variables in the terraform init command.
+### How does this Terraform work in a pipeline?
+- It is not best practice to use tfvars in a pipeline and should be explicitily declared as variables in the terraform init command.
 
-        There are some secrets within this terraform such as the master database password that you would want to ensure remains encrypted throughout the pipeline. An example of this is setting all variables as secrets in an Azure pipeline both encrypting and masking them, this is best practice for my current position.
+There are some secrets within this terraform such as the master database password that you would want to ensure remains encrypted throughout the pipeline. An example of this is setting all variables as secrets in an Azure pipeline both encrypting and masking them, this is best practice for my current position.
 
-        Providing the pipeline with least priviledge in order to perform its build tasks. This could prevent some unwanted activity such as deletion etc.
+Providing the pipeline with least priviledge in order to perform its build tasks. This could prevent some unwanted activity such as deletion etc.
 
-        Lastly incorporating a backend state file and using terraform_remote_state will ensure that the terraform state remains consistent throughout the pipeline.
+Lastly incorporating a backend state file and using terraform_remote_state will ensure that the terraform state remains consistent throughout the pipeline.
 
 
