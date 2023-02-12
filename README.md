@@ -63,4 +63,6 @@ Providing the pipeline with least priviledge in order to perform its build tasks
 
 Lastly incorporating a backend state file and using terraform_remote_state will ensure that the terraform state remains consistent throughout the pipeline.
 
+Using secrets manager during rollback can cause errors if rerun as AWS holds the secret as "scheduled for deletion" for a period of 7 days. This means that the secret can not be recreated. This is alleviated by a cli command using the secret arn to permanently delete.
+
 
